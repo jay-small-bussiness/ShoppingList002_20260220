@@ -19,5 +19,10 @@ ViewModelから直接DBアクセス禁止
 命名規則変更禁止
 4. コーディング規約
 Asyncサフィックス必須
-DIはAddScoped
-Interface必須
+# DI原則
+
+- Repository: AddSingleton
+- Service: 原則 AddSingleton
+- ViewModel: AddTransient
+- 特別な理由がない限り AddScoped は使わない
+- Interface必須
