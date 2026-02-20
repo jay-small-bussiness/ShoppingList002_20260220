@@ -1,0 +1,98 @@
+<ContentPage
+    x:Class="ShoppingList002.Views.VoiceAddPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ShoppingList002.ViewModels"
+    Title="カテゴリ内ボイス追加">
+
+    <!-- ScrollView をやめて Grid ベースにする -->
+    <Grid RowDefinitions="15*,7*,20*,25*,5*" Padding="20" RowSpacing="16">
+
+        <!-- 上部情報 -->
+        <VerticalStackLayout Grid.Row="0" Spacing="12">
+            <!-- モード表示 -->
+            <Border StrokeThickness="0" BackgroundColor="DeepSkyBlue" Padding="8" StrokeShape="RoundRectangle 12">
+                <Label Text="{Binding ModeChipText}" FontSize="18" FontAttributes="Bold" TextColor="#3730A3"/>
+            </Border>
+
+            <Border StrokeThickness="0" BackgroundColor="LightCyan" Padding="8" StrokeShape="RoundRectangle 12">
+                <Label Text="{Binding HintText}" FontSize="16" TextColor="OrangeRed" FontAttributes="Bold"/>
+            </Border>
+        </VerticalStackLayout>
+
+        <!-- 🎙 マイク状態 -->
+        <Grid Grid.Row="1" HeightRequest="70" BackgroundColor="{Binding MicStatusColor}">
+            <Label Text="{Binding MicStatusText}"
+                TextColor="White"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="16"/>
+            <Label Text="{Binding RecognizedText}"
+                FontSize="20"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="White"
+                HorizontalOptions="Center" />
+            <ActivityIndicator IsRunning="{Binding IsListening}"
+                IsVisible="{Binding IsListening}"
+                Color="White"
+                HorizontalOptions="End" VerticalOptions="End"
+                Margin="8"/>
+        </Grid>
+
+        <!-- 📋 検索結果リスト -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding SearchResults}"
+                        SelectionMode="Single"
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" Padding="10" Margin="5"
+                           BackgroundColor="{Binding BackgroundColor}"
+                           InputTransparent="False">
+                        <!--<Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnItemTapped" />
+                        </Frame.GestureRecognizers>-->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="{Binding ItemName}"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               Grid.Column="0" />
+                            <Label Text="{Binding CategoryName}"
+                               FontSize="14"
+                               Grid.Column="1"
+                               HorizontalOptions="End" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- 🧾 追加履歴 -->
+        <VerticalStackLayout Grid.Row="3" Spacing="8">
+            <Label Text="最近追加した項目" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding AddedHistory}"
+                            x:Name="HistoryCollection"
+                            VerticalOptions="FillAndExpand"
+                            HeightRequest="200">
+                <!-- ←適宜調整 -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" FontSize="14" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+        <!-- 🔘 操作ボタン -->
+        <VerticalStackLayout Grid.Row="4">
+            <Grid ColumnDefinitions="*,*,*,*" Padding="2" ColumnSpacing="5">
+                <Button Text="🎤 聴く　"    Command="{Binding StartListeningCommand}" Grid.Column="0"/>
+                <Button Text="⏹ 停止　"    Command="{Binding StopListeningCommand}"  Grid.Column="1"/>
+                <Button Text="🔚 終了　"    Command="{Binding CloseCommand}"  Grid.Column="3"/>
+            </Grid>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

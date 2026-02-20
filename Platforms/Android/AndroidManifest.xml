@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+	package="com.business.small.jay.shoppinglist002_public">
+	<application 
+		android:label="min-Kai"
+		android:allowBackup="true" 
+		android:icon="@mipmap/appicon" 
+		android:usesCleartextTraffic="true" 
+		android:supportsRtl="true">
+		  <activity
+			android:name="crc64fb13d807e7e91e0c.MainActivity"
+            android:exported="true"
+            android:theme="@style/Maui.SplashTheme"
+            android:launchMode="singleTop"
+            android:label="min-Kai"
+            android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+	</application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+</manifest>
