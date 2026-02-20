@@ -1,3 +1,9 @@
+# Codex Instructions
+
+This file defines mandatory architectural rules.
+Any generated code must comply with these rules.
+If a requested change violates these rules, explain why.
+
 1. プロジェクトの目的
 Minkaiは生活外部記憶OS
 ローカルファースト
