@@ -26,3 +26,9 @@ Asyncサフィックス必須
 - ViewModel: AddTransient
 - 特別な理由がない限り AddScoped は使わない
 - Interface必須
+
+## DI 例外規定
+
+- HttpClient 系は AddHttpClient を使用する
+- 外部APIアクセスサービスは typed client を許可
+- MAUI UI系（App, AppShell, Page）は interface 必須対象外
